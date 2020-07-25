@@ -3,7 +3,7 @@ interface TeamBetsResponse {
 }
 
 async function getTeamBets(team: string): Promise<TeamBetsResponse> {
-    return fetch("http://35.208.64.166:3000/bets/" + team, {
+    return fetch("https://teemotool.com/api/bets/" + team, {
         method: "GET",
         mode: "cors",
         headers: {
