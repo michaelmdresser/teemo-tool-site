@@ -3,7 +3,7 @@ interface TeamBetsResponse {
 }
 
 async function getTeamBets(team: string): Promise<TeamBetsResponse> {
-    return fetch("http://192.168.1.111:3002/bets/" + team, {
+    return fetch("http://35.208.64.166:3000/bets/" + team, {
         method: "GET",
         mode: "cors",
         headers: {

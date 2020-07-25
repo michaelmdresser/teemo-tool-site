@@ -37,7 +37,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 function getTeamBets(team) {
     return __awaiter(this, void 0, void 0, function () {
         return __generator(this, function (_a) {
-            return [2 /*return*/, fetch("http://192.168.1.111:3002/bets/" + team, {
+            return [2 /*return*/, fetch("http://35.208.64.166:3000/bets/" + team, {
                     method: "GET",
                     mode: "cors",
                     headers: {
