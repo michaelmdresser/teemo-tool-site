@@ -1,0 +1,32 @@
+#title {
+    text-align: center;
+    padding: 10px;
+}
+
+.bet-total {
+    padding: 2px;
+}
+
+.individual-bets {
+    font-size: 0.6em;
+}
+
+#blue-bet-total {
+    background-color: #4d6c91;
+}
+
+#red-bet-total {
+    background-color: #bd3a57;
+}
+
+body {
+    height: 100%;
+    background: linear-gradient(90deg, #0074D9 50%, #FF4136 50%);
+    color: white;
+    font-size: 1.2em;
+}
+
+#bet-info {
+    display: flex;
+    justify-content: space-evenly;
+}
