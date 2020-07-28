@@ -37,7 +37,6 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 function getTeamBets(team) {
     return __awaiter(this, void 0, void 0, function () {
         return __generator(this, function (_a) {
-            return [2 /*return*/, fetch("https://teemotool.com/api/bets/" + team, {
                     method: "GET",
                     mode: "cors",
                     headers: {
@@ -72,20 +71,18 @@ function updateBetInfo(team) {
         individualDiv.appendChild(makeIndividualBetsDiv(response.bets));
     });
 }
-function showIndividualBets() {
+function showIndividualBets(button) {
     var redIndividualBets = document.getElementById("red-individual-bets");
     var blueIndividualBets = document.getElementById("blue-individual-bets");
-    if (redIndividualBets.style.display === "none") {
+    if (redIndividualBets.style.display === "none" || blueIndividualBets.style.display === "none") {
         redIndividualBets.style.display = "block";
+		 blueIndividualBets.style.display = "block";
+		button.innerHTML = "Hide Bet Breakdown";
     }
     else {
         redIndividualBets.style.display = "none";
-    }
-    if (blueIndividualBets.style.display === "none") {
-        blueIndividualBets.style.display = "block";
-    }
-    else {
-        blueIndividualBets.style.display = "none";
+		 blueIndividualBets.style.display = "none";
+		button.innerHTML = "Show Bet Breakdown";
     }
 }
 updateBetInfo("red");
