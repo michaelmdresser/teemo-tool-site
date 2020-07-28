@@ -4,20 +4,25 @@
     <meta charset="utf-8">
     <title>Teemo Tool</title>
     <link rel="stylesheet" href="style.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap" rel="stylesheet">
   </head>
   <body>
 
     <h1 id="title">Teemo Tool</h1>
+    <div id="show-breakdown">
+    	<button id="show-breakdown-button" onclick="showIndividualBets()">Show bet breakdown</button>
+    </div>
     <div id="bet-info">
         <span id="blue-bet-info">
-            <span><span id="blue-bet-total" class="bet-total">BLUE</span></span>
-            <div id="blue-individual-bets" class="individual-bets">
+            <span id="blue-bet-total" class="bet-total">BLUE</span>
+            <div id="blue-individual-bets" class="individual-bets" style="display: none">
             </div>
         </span>
-        <span></span>
+        <span id="versus">VS</span>
         <span id="red-bet-info">
-            <span><span id="red-bet-total" class="bet-total">RED</span></span>
-            <div id="red-individual-bets" class="individual-bets">
+            <span id="red-bet-total" class="bet-total">RED</span>
+            <div id="red-individual-bets" class="individual-bets" style="display: none">
             </div>
         </span>
     </div>
