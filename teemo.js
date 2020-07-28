@@ -72,6 +72,24 @@ function updateBetInfo(team) {
         individualDiv.appendChild(makeIndividualBetsDiv(response.bets));
     });
 }
+
+function showIndividualBets() {
+    var redIndividualBets = document.getElementById("red-individual-bets")
+    var blueIndividualBets = document.getElementById("blue-individual-bets")
+
+    if (redIndividualBets.style.display === "none") {
+        redIndividualBets.style.display = "block";
+    } else {
+        redIndividualBets.style.display = "none";
+    }
+
+    if (blueIndividualBets.style.display === "none") {
+        blueIndividualBets.style.display = "block";
+    } else {
+        blueIndividualBets.style.display = "none";
+    }
+}
+
 updateBetInfo("red");
 updateBetInfo("blue");
 setInterval(function () { updateBetInfo("red"); updateBetInfo("blue"); }, 3000);
