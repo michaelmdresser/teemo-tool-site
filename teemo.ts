@@ -43,6 +43,23 @@ function updateBetInfo(team: string) {
     })
 }
 
+function showIndividualBets() {
+    let redIndividualBets = document.getElementById("red-individual-bets")
+    let blueIndividualBets = document.getElementById("blue-individual-bets")
+
+    if (redIndividualBets.style.display === "none") {
+        redIndividualBets.style.display = "block";
+    } else {
+        redIndividualBets.style.display = "none";
+    }
+
+    if (blueIndividualBets.style.display === "none") {
+        blueIndividualBets.style.display = "block";
+    } else {
+        blueIndividualBets.style.display = "none";
+    }
+}
+
 updateBetInfo("red")
 updateBetInfo("blue")
 setInterval(function(){ updateBetInfo("red"); updateBetInfo("blue") }, 3000)
