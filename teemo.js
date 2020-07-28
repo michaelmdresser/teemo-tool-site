@@ -72,20 +72,18 @@ function updateBetInfo(team) {
         individualDiv.appendChild(makeIndividualBetsDiv(response.bets));
     });
 }
-function showIndividualBets() {
+function showIndividualBets(button) {
     var redIndividualBets = document.getElementById("red-individual-bets");
     var blueIndividualBets = document.getElementById("blue-individual-bets");
-    if (redIndividualBets.style.display === "none") {
+    if (redIndividualBets.style.display === "none" || blueIndividualBets.style.display === "none") {
         redIndividualBets.style.display = "block";
+		 blueIndividualBets.style.display = "block";
+		button.innerHTML = "Hide Bet Breakdown";
     }
     else {
         redIndividualBets.style.display = "none";
-    }
-    if (blueIndividualBets.style.display === "none") {
-        blueIndividualBets.style.display = "block";
-    }
-    else {
-        blueIndividualBets.style.display = "none";
+		 blueIndividualBets.style.display = "none";
+		button.innerHTML = "Show Bet Breakdown";
     }
 }
 updateBetInfo("red");
