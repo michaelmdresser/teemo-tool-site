@@ -15,7 +15,7 @@
 }
 
 #blue-bet-total {
-    background: #03559C;
+    background: transparent;
     border-radius: 18px;
     padding: 9px;
     position: absolute;
@@ -34,7 +34,7 @@
 }
 
 #red-bet-total {
-    background: #8F2620;
+    background: transparent;
     border-radius: 18px;
     padding: 9px;
     position: absolute;
@@ -72,8 +72,9 @@ body {
 }
 
 #show-breakdown-button {
-    background: #5A27C1;
-    border-radius: 18px;
+    background: rgba(0, 0, 0, 0.25);
+    border: none;
+    border-radius: 10px;
     padding: 8px;
     color: white;
     font-family: 'Lato', sans-serif;

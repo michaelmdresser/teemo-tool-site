@@ -71,46 +71,42 @@ function updateBetInfo(team) {
     var individualDiv = document.getElementById(team + "-individual-bets");
     getTeamBets(team).then(function (response) {
         var total = getTeamBetsTotal(response);
+        var current;
+        if (totalDiv.innerHTML == '') {
+            current = 0;
+        }
+        else {
+            current = parseInt(totalDiv.innerHTML.replace(/,/g, ''));
+        }
 
-        //animateCounter(totalDiv, totalDiv.innerText, total, 10);
-        let test = new CountUp(divName, total);
+        const options = {
+            startVal: current,
+        };
+
+        let test = new CountUp(divName, total, options);
+
         test.start();
 
         individualDiv.innerHTML = '';
         individualDiv.appendChild(makeIndividualBetsDiv(response.bets));
     });
 }
-function showIndividualBets(button) {
+
+document.getElementById("show-breakdown-button").addEventListener('click', function() {
     var redIndividualBets = document.getElementById("red-individual-bets");
     var blueIndividualBets = document.getElementById("blue-individual-bets");
     if (redIndividualBets.style.display === "none" || blueIndividualBets.style.display === "none") {
         redIndividualBets.style.display = "block";
-		 blueIndividualBets.style.display = "block";
-		button.innerHTML = "Hide Bet Breakdown";
+        blueIndividualBets.style.display = "block";
+        this.textContent = "Hide Bet Breakdown";
     }
     else {
         redIndividualBets.style.display = "none";
-		 blueIndividualBets.style.display = "none";
-		button.innerHTML = "Show Bet Breakdown";
+        blueIndividualBets.style.display = "none";
+        this.textContent = "Show Bet Breakdown";
     }
-}
+});
 
-function animateCounter(counterDiv, start, end, counterLength) {
-
-    // 3000 miliseconds is the max time we have for the counter
-    var step = Math.floor((end - start) / 2700);
-
-
-    var current = parseInt(start);
-    var timer = setInterval( function() {
-        current += Math.floor(Math.random() * 20) + step;
-        counterDiv.innerHTML = current;
-        if (current > end) {
-            counterDiv.innerHTML = end;
-            clearInterval(timer);
-        }
-    }, 1);
-}
 
 updateBetInfo("red");
 updateBetInfo("blue");
