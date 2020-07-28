@@ -1,3 +1,5 @@
+import CountUp = require("'C:/Users/kspat/node_modules/countup.js/dist'");
+
 interface TeamBetsResponse {
     bets: number[]
 }

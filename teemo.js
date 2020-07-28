@@ -1,3 +1,5 @@
+import { CountUp } from './countup.js/dist/countUp.js';
+
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -50,7 +52,8 @@ function getTeamBets(team) {
     });
 }
 function getTeamBetsTotal(bets) {
-    return bets.bets.reduce(function (a, b) { return a + b; });
+    var total = bets.bets.reduce(function (a, b) { return a + b; });
+    return total;
 }
 function makeIndividualBetsDiv(bets) {
     var div = document.createElement("div");
@@ -67,7 +70,12 @@ function updateBetInfo(team) {
     var totalDiv = document.getElementById(divName);
     var individualDiv = document.getElementById(team + "-individual-bets");
     getTeamBets(team).then(function (response) {
-        totalDiv.innerText = String(getTeamBetsTotal(response));
+        var total = getTeamBetsTotal(response);
+
+        //animateCounter(totalDiv, totalDiv.innerText, total, 10);
+        let test = new CountUp(divName, total);
+        test.start();
+
         individualDiv.innerHTML = '';
         individualDiv.appendChild(makeIndividualBetsDiv(response.bets));
     });
@@ -86,6 +94,24 @@ function showIndividualBets(button) {
 		button.innerHTML = "Show Bet Breakdown";
     }
 }
+
+function animateCounter(counterDiv, start, end, counterLength) {
+
+    // 3000 miliseconds is the max time we have for the counter
+    var step = Math.floor((end - start) / 2700);
+
+
+    var current = parseInt(start);
+    var timer = setInterval( function() {
+        current += Math.floor(Math.random() * 20) + step;
+        counterDiv.innerHTML = current;
+        if (current > end) {
+            counterDiv.innerHTML = end;
+            clearInterval(timer);
+        }
+    }, 1);
+}
+
 updateBetInfo("red");
 updateBetInfo("blue");
 setInterval(function () { updateBetInfo("red"); updateBetInfo("blue"); }, 3000);
