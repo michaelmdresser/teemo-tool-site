@@ -6,6 +6,7 @@
 
 .bet-total {
     padding: 2px;
+    display: inline-block;
 }
 
 .individual-container {
@@ -19,8 +20,10 @@
 }
 
 .label {
+    /* border:1px solid black; */
     font-family: 'Lato', sans-serif;
     padding: 3px;
+    display: inline-block;
 }
 
 .breakdown-counter {
@@ -30,11 +33,11 @@
 }
 
 .bet-container {
-    /* border:1px solid black; */
     padding: 9px;
     position:absolute;
     top: 30%;
     margin-bottom: 10px;
+    display: table-cell;
 }
 
 #blue-total-container {
@@ -48,6 +51,7 @@
     margin-bottom: 1px;
     font-family: 'Lato', sans-serif;
     font-size: 2.0em;
+    float:right;
     color: white;
     /*box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);*/
 }
