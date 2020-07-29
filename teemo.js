@@ -36,7 +36,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-var hidden = false;
+var totalDisplayMode = true;
 function getTeamBets(team) {
     return __awaiter(this, void 0, void 0, function () {
         return __generator(this, function (_a) {
@@ -71,44 +71,69 @@ function updateBetInfo(team) {
     var totalDiv = document.getElementById(divName);
     var individualDivName = team + "-individual-bets";
     var individualDiv = document.getElementById(individualDivName);
+    var breakdownCounterName = team + "-breakdown-counter";
+    var breakdownCounter = document.getElementById(breakdownCounterName);
     getTeamBets(team).then(function (response) {
         console.log("update")
-        var total = getTeamBetsTotal(response);
 
-        var current;
+        individualDiv.innerHTML = '';
+        individualDiv.appendChild(makeIndividualBetsDiv(response.bets));
 
-        // team total div counter
-        if (totalDiv.innerHTML == '') {
-            current = 0;
+        var teamBetsResponse = getTeamBetsTotal(response);
+
+        if (totalDisplayMode) {
+            var total = teamBetsResponse;
+
+            var current;
+
+            // team total div counter
+            if (totalDiv.innerHTML == '') {
+                current = 0;
+            }
+            else {
+                current = parseInt(totalDiv.innerHTML.replace(/,/g, ''));
+            }
+
+            totalDiv.dataset.total = total;
+
+            const options = {
+                startVal: current,
+            };
+
+            let totalCounter = new CountUp(divName, total, options);
+            totalCounter.start();
         }
         else {
+            var total = individualDiv.children[0].children.length;
+            console.log(total);
+
+            var current;
+
+            // team total div counter
             current = parseInt(totalDiv.innerHTML.replace(/,/g, ''));
-        }
 
-        totalDiv.dataset.total = total;
+            totalDiv.dataset.total = total;
 
-        const options = {
-            startVal: current,
-        };
+            const options = {
+                startVal: current,
+            };
 
-        let totalCounter = new CountUp(divName, total, options);
-
-        if (!hidden) {
+            let totalCounter = new CountUp(divName, total, options);
             totalCounter.start();
         }
 
         // individual div parent counter
-        individualDiv.dataset.total = total;
-        individualDiv.appendChild(makeIndividualBetsDiv(response.bets));
+
+        var breakdownCurrent = parseInt(breakdownCounter.innerHTML.replace(/,/g, ''));
 
         const individualOptions = {
-            startVal: parseInt(individualDiv.innerHTML.replace(/,/g, '')),
+            startVal: breakdownCurrent,
         };
 
-        //let individualDivCounter = new CountUp(individualDivName, total, individualOptions);
-        //individualDivCounter.start();
+        let individualDivCounter = new CountUp(breakdownCounterName, teamBetsResponse, individualOptions);
+        individualDivCounter.start();
 
-        console.log(individualDiv.children)
+        //console.log(individualDiv.children)
 
 
     });
@@ -119,10 +144,16 @@ document.getElementById("show-breakdown-button").addEventListener('click', funct
     var blueIndividualBets = document.getElementById("blue-individual-bets");
     var redBetsTotal =  document.getElementById("red-bet-total");
     var blueBetsTotal =  document.getElementById("blue-bet-total");
+    var redBreakdownCounter = document.getElementById("red-breakdown-counter");
+    var blueBreakdownCounter = document.getElementById("blue-breakdown-counter");
     if (redIndividualBets.style.display === "none" || blueIndividualBets.style.display === "none") {
 
         var redTotal = redBetsTotal.dataset.total;
         var blueTotal = blueBetsTotal.dataset.total;
+
+        redBreakdownCounter.style.display = "block";
+        blueBreakdownCounter.style.display = "block";
+
 
         const redOptions = {
                   startVal: redTotal,
@@ -132,39 +163,56 @@ document.getElementById("show-breakdown-button").addEventListener('click', funct
                   startVal: blueTotal,
         };
 
-        let redCounter = new CountUp(redBetsTotal, 0, redOptions);
-        let blueCounter = new CountUp(blueBetsTotal, 0, blueOptions);
+        var noRedBets = redIndividualBets.children[0].children.length;
+        var noBlueBets = blueIndividualBets.children[0].children.length;
 
-        hidden = true;
+        let redCounter = new CountUp(redBetsTotal, noRedBets, redOptions);
+        let blueCounter = new CountUp(blueBetsTotal, noBlueBets, blueOptions);
+        let redBreakdown = new CountUp(redBreakdownCounter, redTotal);
+        let blueBreakdown = new CountUp(blueBreakdownCounter, blueTotal);
+
+        totalDisplayMode = false;
 
         redCounter.start();
         blueCounter.start();
+        redBreakdown.start();
+        blueBreakdown.start();
 
-        redIndividualBets.style.display = "block";
-        blueIndividualBets.style.display = "block";
 
-        let redIndividualCounter = new CountUp(redIndividualBets, redTotal)
-        let blueIndividualCounter = new CountUp(blueIndividualBets, blueTotal)
 
-        redIndividualCounter.start();
-        blueIndividualCounter.start();
+        redIndividualBets.style.display = "inline-block";
+        blueIndividualBets.style.display = "inline-block";
 
+        //let redIndividualCounter = new CountUp(redIndividualBets, redTotal)
+        //let blueIndividualCounter = new CountUp(blueIndividualBets, blueTotal)
+
+        //redIndividualCounter.start();
+        //blueIndividualCounter.start();
+
+        document.getElementById("red-bet-label").textContent = "Bets for Red";
+        document.getElementById("blue-bet-label").textContent = "Bets for Blue";
         this.textContent = "Hide Bet Breakdown";
     }
     else {
 
-        hidden = false;
+        totalDisplayMode = true;
         updateBetInfo("red");
         updateBetInfo("blue");
 
+        redBreakdownCounter.style.display = "none";
+        blueBreakdownCounter.style.display = "none";
+
         redIndividualBets.style.display = "none";
         blueIndividualBets.style.display = "none";
+
+        document.getElementById("red-bet-label").textContent = "Mushrooms";
+        document.getElementById("blue-bet-label").textContent = "Mushrooms";
         this.textContent = "Show Bet Breakdown";
     }
 });
 document.getElementById("red-bet-total").addEventListener("DOMSubtreeModified", function () {
     if (this.innerHTML == 0){
-      this.style.display = "none";
+      //this.style.display = "none";
     }
     else {
       this.style.display = "block";
@@ -172,7 +220,7 @@ document.getElementById("red-bet-total").addEventListener("DOMSubtreeModified", 
 });
 document.getElementById("blue-bet-total").addEventListener("DOMSubtreeModified", function () {
     if (this.innerHTML == 0){
-      this.style.display = "none";
+      //this.style.display = "none";
     }
     else {
       this.style.display = "block";

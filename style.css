@@ -8,48 +8,91 @@
     padding: 2px;
 }
 
+.individual-container {
+    position: absolute;
+}
+
 .individual-bets {
     margin-top: 5px;
     font-size: 0.95em;
     font-family: 'Roboto Condensed', sans-serif;
 }
 
+.label {
+    font-family: 'Lato', sans-serif;
+    padding: 3px;
+}
+
+.breakdown-counter {
+    position: relative;
+    font-family: 'Lato', sans-serif;
+    font-size: 1.5em;
+}
+
+.bet-container {
+    /* border:1px solid black; */
+    padding: 9px;
+    position:absolute;
+    top: 30%;
+    margin-bottom: 10px;
+}
+
+#blue-total-container {
+    left: 30%;
+}
+
 #blue-bet-total {
     background: transparent;
     border-radius: 18px;
-    padding: 9px;
-    position: absolute;
-    top: 30%;
-    left: 30%;
-    margin-bottom: 10px;
+    position: relative;
+    margin-bottom: 1px;
     font-family: 'Lato', sans-serif;
     font-size: 2.0em;
     color: white;
     /*box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);*/
 }
 
-#blue-individual-bets {
+#blue-bet-label {
+    float: right;
+}
+
+#blue-individual-container {
     position: absolute;
     left: 20%;
 }
 
-#red-bet-total {
-    background: transparent;
-    border-radius: 18px;
-    padding: 9px;
-    position: absolute;
-    top: 30%;
+
+#blue-individual-bets {
+    position: relative;
+    float: left;
+}
+
+#red-total-container {
     right: 30%;
-    margin-bottom: 10px;
-    font-family: 'Lato', sans-serif;
-    font-size: 2.0em;
-    color: white;
+}
+
+#red-bet-total {
+  background: transparent;
+  border-radius: 18px;
+  position: relative;
+  margin-bottom: 1px;
+  font-family: 'Lato', sans-serif;
+  font-size: 2.0em;
+  color: white;
     /*box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);*/
 }
 
-#red-individual-bets {
+#red-bet-label {
+    float: left
+}
+
+#red-individual-container {
     position: absolute;
     right: 20%;
+}
+
+#red-individual-bets {
+    position: relative;
 }
 
 body {
