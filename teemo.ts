@@ -115,7 +115,7 @@ document.getElementById("show-breakdown-button").addEventListener('click', funct
     var redBreakdownCounter = document.getElementById("red-breakdown-counter");
     var blueBreakdownCounter = document.getElementById("blue-breakdown-counter");
 
-    // determines if breakdowns are visible or not, nick's code sux
+    // determines if breakdowns are visible or not, nick's code is alright but in my own opinion, which should have no bearing on anybody's sense of self worth and is not meant to offend anyone, in this specific case it is subpar unlike any other cases which tend to be quite good, in particular with regard to seeing easy solutions which I may not have. Additionally, I think nick is good at video games, sensitive to other's feelings, and only takes a little too long in the shower :)
     if (redIndividualBets.style.display === "none" || blueIndividualBets.style.display === "none") {
 
         var redTotal = redBetsTotal.dataset.total;
