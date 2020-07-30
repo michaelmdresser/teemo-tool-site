@@ -47,6 +47,7 @@ function updateBetInfo(team) {
         individualDiv.innerHTML = '';
         individualDiv.appendChild(makeIndividualBetsDiv(response.bets));
         var teamBetsResponse = getTeamBetsTotal(response);
+        // if-else checks whether central counter is in total display mode, or no. of bets per side display mode
         if (totalDisplayMode) {
             var total = teamBetsResponse;
             var current;
@@ -55,6 +56,7 @@ function updateBetInfo(team) {
                 current = 0;
             }
             else {
+                // replace due to countUp conversion of int to string with commas
                 current = parseInt(totalDiv.innerHTML.replace(/,/g, ''));
             }
             totalDiv.dataset.total = total.toString();
@@ -66,7 +68,6 @@ function updateBetInfo(team) {
         }
         else {
             var total = individualDiv.children[0].children.length;
-            // console.log(total);
             var current;
             // team total div counter
             current = parseInt(totalDiv.innerHTML.replace(/,/g, ''));
@@ -84,7 +85,6 @@ function updateBetInfo(team) {
         };
         let individualDivCounter = new CountUp(breakdownCounterName, teamBetsResponse, individualOptions);
         individualDivCounter.start();
-        //console.log(individualDiv.children)
     });
 }
 document.getElementById("show-breakdown-button").addEventListener('click', function () {
@@ -94,6 +94,7 @@ document.getElementById("show-breakdown-button").addEventListener('click', funct
     var blueBetsTotal = document.getElementById("blue-bet-total");
     var redBreakdownCounter = document.getElementById("red-breakdown-counter");
     var blueBreakdownCounter = document.getElementById("blue-breakdown-counter");
+    // determines if breakdowns are visible or not, nick's code sux
     if (redIndividualBets.style.display === "none" || blueIndividualBets.style.display === "none") {
         var redTotal = redBetsTotal.dataset.total;
         var blueTotal = blueBetsTotal.dataset.total;
@@ -118,10 +119,6 @@ document.getElementById("show-breakdown-button").addEventListener('click', funct
         blueBreakdown.start();
         redIndividualBets.style.display = "inline-block";
         blueIndividualBets.style.display = "inline-block";
-        //let redIndividualCounter = new CountUp(redIndividualBets, redTotal)
-        //let blueIndividualCounter = new CountUp(blueIndividualBets, blueTotal)
-        //redIndividualCounter.start();
-        //blueIndividualCounter.start();
         document.getElementById("red-bet-label").textContent = "Bets for Red";
         document.getElementById("blue-bet-label").textContent = "Bets for Blue";
         this.textContent = "Hide Bet Breakdown";
