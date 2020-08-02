@@ -4,6 +4,11 @@
     font-family: 'Lato', sans-serif;
 }
 
+#about {
+    text-align: center;
+    font-family: 'Lato', sans-serif;
+}
+
 .bet-total {
     padding: 2px;
     display: inline-block;
